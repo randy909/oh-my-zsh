@@ -101,15 +101,11 @@ function steeef_precmd {
 }
 add-zsh-hook precmd steeef_precmd
 
-function prompt_char {
-    # TODO: we're already calling out to git once, try to avoid a second call
-    git branch >/dev/null 2>/dev/null && echo '±' && return
-    echo '›'
-}
+prompt_char="›"
 
 PROMPT=$'
 %{$hotpink%}%n%{$reset_color%} at %{$orange%}%m%{$reset_color%} in %{$limegreen%}%~%{$reset_color%} $vcs_info_msg_0_
-$(virtualenv_info)$(prompt_char) '
+$(virtualenv_info)$prompt_char '
 
 # The right-hand prompt
 RPROMPT='${time}'
